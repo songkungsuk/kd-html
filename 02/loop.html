@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div id="div1"></div>
+    <table border="1">
+        <thead>
+        </thead>
+    </table>
+    <script>
+        let html = '';
+        let html2 = '';
+        let cnt = 1;
+        for(let i=1; i<4; i++){
+            
+            html2 += '<tr>'            
+            for(let j=1; j<4; j++){
+                html2 +=  '<td>' + cnt + '</td>';
+                cnt ++;
+            }
+            html2 += '</tr>'
+            
+        }
+        document.querySelector('thead').innerHTML = html2;
+
+        
+        
+    </script>
+</body>
+</html>
