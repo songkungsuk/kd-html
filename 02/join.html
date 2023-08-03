@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <form onsubmit="return ok()">
+        <input type="text" id="name" placeholder="이름"> <br>
+        <input type="text" id="id" placeholder="아이디"> <br>
+        <input type="text" id="pwd" placeholder="비밀번호"> <br>
+        <label for="man">남자</label>
+        <input type="radio" name="s" id="man" value="man">
+        <label for="fe">여자</label>
+        <input type="radio" name="s" id="fe" value="female"> <br>
+        <input type="text" id="phoneNumber" placeholder="전화번호"> <br>
+        <button>회원가입</button>
+    </form>
+    <script>
+        
+        function ok(){
+            let name = document.querySelector('#name');
+            let id = document.querySelector('#id');
+            let pwd = document.querySelector('#pwd');
+            let radio = document.querySelector('input[name="s"]:checked');
+            let number = document.querySelector('#phoneNumber');
+
+            if(name.value.trim().length <2){
+                alert('이름을 두글자 이상입력해주세요');
+                return false;
+            }
+            if(id.value.trim().length <4){
+                alert('id를 4자 이상입력해주세요');
+                return false;
+            }
+            if(pwd.value.trim().length <4){
+                alert('pw를 4자 이상입력해주세요');
+                return false;
+            }
+            if(!radio){
+                alert('성별을선택해주세요');
+                return false;
+            }
+            if(number.value.trim().replace(/-/g, '').length  < 11){
+                alert('핸드폰번호를 11자 이상입력해주세요');
+                return false;
+            }
+          
+            
+            return true;       
+        }
+    
+    </script>
+</body>
+</html>

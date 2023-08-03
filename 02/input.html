@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://code.jquery.com/jquery-3.7.0.js"
+    integrity="sha256-JlqSTELeR4TLqP0OG9dxM7yDPqX1ox/HfgiSLBj8+kM=" crossorigin="anonymous"></script>
+<script type="text/javascript" src="/resorces/js/bootstrap.js"></script>
+<script type="text/javascript" src="/resorces/js/bootstrap.bundle.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/2.9.2/umd/popper.min.js"
+    integrity="sha512-2rNj2KJ+D8s1ceNasTIex6z4HWyOnEYLVC3FigGOmyQCZc2eBXKgOxQmo3oKLHyfcj53uz4QMsRCWNbLd32Q1g=="
+    crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+<link rel="stylesheet" href="/resorces/css/bootstrap.css">
+<link rel="stylesheet" href="/resorces/css/bootstrap-grid.css">
+<link rel="stylesheet" href="/resorces/css/bootstrap-reboot.css">
+</head>
+
+<body>
+    <form onsubmit="return check()" class="container" style="text-align: center;">
+        <input type="text" id="id" placeholder="아이디"><br>
+        <input type="text" id="pwd" placeholder="비밀번호"> <br>
+        <button>로그인</button>
+    </form>
+    <script>
+        function check(){
+            const id = document.querySelector('#id');
+            const pwd = document.querySelector('#pwd');
+            if(id.value.trim().length()  < 0){
+                alert('id 4 uppper plz');
+                id.value = ''
+                id.focus();
+                return false;
+            }
+            if(pwd.value.trim().length()  < 0){
+                alert('pw input plz');
+                pwd.focus();
+                pwd.value = ''
+                return false;
+            }
+             return true;
+        }
+    </script>
+</body>
+
+</html>
