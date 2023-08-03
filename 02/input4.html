@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <style>
+        * {
+            margin: 0;
+        }
+
+        td {
+            width: 50px;
+            height: 50px;
+            text-align: center;
+        }
+
+
+        input {
+            width: 170px;
+            height: 20px;
+        }
+    </style>
+</head>
+
+<body>
+
+    <button onclick="startRouletee()">フトスト 일확천금</button> <br>
+
+    <input type="number" id="red" placeholder="빨강 -10배" min="0" max="50">
+    <input type="number" id="green" placeholder="초록 +2배" min="0" max="50">
+    <input type="number" id="blue" placeholder="파랑 10배" min="0" max="50">
+    <br>
+    <input type="number" id="red2" placeholder="빨강 번호" min="0" max="50">
+    <input type="number" id="green2" placeholder="초록 번호" min="0" max="50">
+    <input type="number" id="blue2" placeholder="파랑 번호" min="0" max="50">
+    <button onclick="stop()">멈춰!</button>
+
+    <div class="container">
+        <table border="1" class="table-responsive">
+
+        </table>
+    </div>
+    <div id="final"></div>
+    <span id="result"></span>
+    <script>
+        var interval;
+        var ranIdx;
+        var ranIdx2;
+        var ranIdx3;
+        var coin = 500; //자본금
+        document.querySelector('#result').innerHTML = '<h1>' + '남은코인개수 : ' + coin + '<h1>'
+        function stop() {
+            setTimeout(function () {
+                clearInterval(interval);
+                document.querySelector('#final').innerHTML = '<h1>' + 'Red : ' + parseInt(ranIdx + 1) + '</h1>';
+                document.querySelector('#final').innerHTML += '<h1>' + 'Green : ' + parseInt(ranIdx2 + 1) + '</h1>';
+                document.querySelector('#final').innerHTML += '<h1>' + 'Blue : ' + parseInt(ranIdx3 + 1) + '</h1>';
+                let red = document.querySelector('#red').value;
+                let green = document.querySelector('#green').value;
+                let blue = document.querySelector('#blue').value;
+                let red2 = document.querySelector('#red2');
+                let green2 = document.querySelector('#green2');
+                let blue2 = document.querySelector('#blue2');
+
+                if (red2.value == (ranIdx+1)) {
+                    coin = coin - (red * 10);
+                } else {
+                    coin = coin - red;
+                }
+
+                if (green2.value == (ranIdx2+1)) {
+                    coin = coin + (green * 2);
+                } else {
+                    coin = coin - green;
+                }
+
+                if (blue2.value == (ranIdx3+1)) {
+                    coin = coin + (blue * 10);
+                } else {
+                    coin = coin - blue;
+                }
+
+                document.querySelector('#result').innerHTML = '<h1>' + '남은코인개수' + coin + '<h1>'
+                console.log(coin);
+                if(coin < 0){
+                    alert('더이상 도전이 불가능합니다');
+                    location.reload();
+                }
+            }, 2000)
+        }
+        function startRouletee() {
+            const tds = document.querySelectorAll('td');
+            interval = setInterval(function () {
+                for (let i = 0; i < tds.length; i++) {
+                    tds[i].style = "background-color:white;";
+                }
+                ranIdx = Math.floor((Math.random() * tds.length) + 1);
+                tds[ranIdx].style = 'background-color:red;';
+
+                ranIdx2 = Math.floor((Math.random() * tds.length) + 1);
+                tds[ranIdx2].style = 'background-color:aquamarine;';
+
+                ranIdx3 = Math.floor((Math.random() * tds.length) + 1);
+                tds[ranIdx3].style = 'background-color:cornflowerblue;';
+            }, 200);
+        }
+        html = document.querySelector('table');
+        html2 = '';
+        for (let i = 1; i < 51; i++) {
+            if (i % 10 == 1) {
+                html2 += '<tr>';
+            }
+            html2 += '<td>' + i + '</td>';
+
+            if (i % 10 == 0) {
+                html2 += '</tr>';
+            }
+
+        }
+        html.innerHTML = html2;
+    </script>
+</body>
+
+</html>
