@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://code.jquery.com/jquery-3.7.0.js"
+        integrity="sha256-JlqSTELeR4TLqP0OG9dxM7yDPqX1ox/HfgiSLBj8+kM=" crossorigin="anonymous"></script>
+    <script type="text/javascript" src="/resorces/js/bootstrap.js"></script>
+    <script type="text/javascript" src="/resorces/js/bootstrap.bundle.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/2.9.2/umd/popper.min.js"
+        integrity="sha512-2rNj2KJ+D8s1ceNasTIex6z4HWyOnEYLVC3FigGOmyQCZc2eBXKgOxQmo3oKLHyfcj53uz4QMsRCWNbLd32Q1g=="
+        crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <link rel="stylesheet" href="/resorces/css/bootstrap.css">
+    <link rel="stylesheet" href="/resorces/css/bootstrap-grid.css">
+    <link rel="stylesheet" href="/resorces/css/bootstrap-reboot.css">
+</head>
+
+<body>
+    <div id="clock" class="container" style="text-align: center; padding-top: 300px;"></div>
+
+    <div class="container" style="text-align: center;">
+        <div class="input-group mb-3">
+            <input type="text" class="form-control" placeholder="몇초 후에 알람?" aria-label="몇초 후에 알람?"
+                aria-describedby="basic-addon2">
+            <div class="input-group-append">
+                <button class="btn btn-outline-secondary" type="button" onclick="startTimer(this)" id="timer">시작</button>
+            </div>
+        </div>
+        <div style="display: block;">
+            <audio controls src="/ring.wav" id="arlam"></audio>
+        </div>
+    </div>
+
+    <script>
+        function displayClock() {
+            const date = new Date();
+            document.querySelector('#clock').innerHTML = '<h1>' + date + '</h1>';
+        }
+        setInterval(displayClock, 1000);
+        function startTimer(btn) {
+            if (btn.innerText === '시작') {
+                const timer = parseInt(document.querySelector('#timer').value) * 1000;
+                setTimeout(function () {
+                    document.querySelector('#arlam').play();
+                    btn.innerText = '알람끄기';
+                }, timer);
+            } else {
+                document.querySelector('#arlam').stop();
+                btn.innerText = '시작';
+            }
+
+        }
+    </script>
+</body>
+
+</html>

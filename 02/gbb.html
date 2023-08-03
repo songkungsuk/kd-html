@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        *{
+            margin: 0px;
+            
+        }
+        input{
+            width: 100px;
+            height: 100px;
+            margin: 10px;
+        }
+        img{
+            width: 50px;
+            height: 50px;
+            margin: 10px;
+        }
+    </style>
+</head>
+<body>
+    <h1>가위바위보 게임</h1>
+    <input type="image" onclick="match(1)" src="/img/0.png">
+    <input type="image" onclick="match(2)" src="/img/1.png">
+    <input type="image" onclick="match(3)" src="/img/2.png">
+   
+    <div id="result"></div>
+    <script>
+        let n =  Math.floor(Math.random()*3)+1;
+        console.log(n);
+        status(n);
+        function status(n1){
+            if(n1 == 1){
+                    document.querySelector('#result').innerHTML += '<img src ="/img/' + parseInt(n1-1) +'.png"' +'alt="comImg"> <br>';
+            }
+            if(n1 == 2){
+                    document.querySelector('#result').innerHTML +='<img src ="/img/' + parseInt(n1-1) +'.png"' +'alt="comImg"> <br>';
+            }
+            if(n1 == 3){
+                    document.querySelector('#result').innerHTML += '<img src ="/img/' + parseInt(n1-1) +'.png"' +'alt="comImg"> <br>';
+            }
+            console.log(n1);
+        }           
+  
+
+        function match(num){
+            if(n == num){
+                alert('비겼습니다');
+            }
+            else if((n ==1 && num ==3) || (n==2 && num == 1) || (n==3 && num ==2)){
+                alert('졌습니다');
+            }
+            else if((n ==1 && num ==2) || (n==2 && num == 3) || (n==3 && num ==1)){
+                alert('이겼습니다');
+            }
+
+
+            n =  Math.floor(Math.random()*3)+1;
+            
+            status(n);
+        }
+    </script>
+</body>
+</html>

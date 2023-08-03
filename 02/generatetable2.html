@@ -1,10 +1,12 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
 </head>
+
 <body>
     <input type="number" max="100" min="1" id="floor">
     <button onclick="generateTable()">테이블 생성</button>
@@ -14,19 +16,20 @@
         </table>
     </div>
     <script>
-        function generateTable(){
+        function generateTable() {
             let max = parseInt(document.querySelector('#floor').value); // 입력한값
             let html = '';
-            for(let i=1; i<=max; i++){
+            for (let i = 1; i <= max; i++) {
                 html += '<tr>';
-                for(let j=1; j<=max; j++){
-                    html += '<td>' + i +'X'+ j +'</td>';
-                }    
-                
+                for (let j = 1; j <= max; j++) {
+                    html += '<td>' + i + 'X' + j + '</td>';
+                }
+
                 html += '</tr>';
             }
             document.querySelector('table').innerHTML = html;
         }
     </script>
 </body>
+
 </html>
