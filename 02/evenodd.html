@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        let money = 0; // 1 - 20
+        money = Math.floor(Math.random() * 950000) + 50000;
+        console.log(money);
+        var num = Math.floor(Math.random() * 10) + 1;
+        console.log(num);
+        function setDisplay(obj, value) {
+            obj.style.display = value;
+        }
+        
+        function compareEvenOdd(n, text) {
+                let betmony = document.querySelector('#betMoney').value;
+                console.log(text);
+                if (text == 1) {
+                    if (n % 2 === 1) {  
+                        money += betmony * 2;
+                    } else {
+                        money -= betmony * 3;
+                    }
+                }
+                else {
+                    if (n % 2 === 0) {
+                        money += betmony * 2;
+                    } else {
+                        money -= betmony * 3;
+                    }
+                }
+                num = Math.floor(Math.random() * 10) + 1;
+                console.log(num);
+                console.log(money);
+            }
+
+        window.onload = function () {
+            const sDiv = document.querySelector('#sDiv');
+            const gDiv = document.querySelector('#gDiv');
+            const moneytext = document.querySelector('#money');
+            moneytext.innerHTML = money
+            gDiv.style.display = 'none';
+            document.querySelector('#sBtn').onclick = function () {
+                sDiv.style.display = 'none';
+                gDiv.style.display = 'block';
+            }
+            console.log(sDiv);
+            document.querySelector('#oddBtn').onclick = function () {//홀 
+                compareEvenOdd(num, 1);
+                moneytext.innerHTML = money;
+                console.log(document.querySelector('#oddBtn').value);
+            }
+            document.querySelector('#evenBtn').onclick = function () {// 짝
+                compareEvenOdd(num, 0);
+                moneytext.innerHTML = money;
+                
+            }
+
+
+        }
+
+    </script>
+    <div id="sDiv">
+        <button id="sBtn">시작</button>
+    </div>
+    <div id="gDiv">
+        금액 : <span id="money"></span>원<br>
+        <input type="text" id="betMoney"> <br>
+        <button id="oddBtn">홀</button>
+        <button id="evenBtn">짝</button>
+    </div>
+</body>
+
+</html>

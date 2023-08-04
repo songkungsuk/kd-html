@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        * {
+            margin: 0px;
+            align-items: center;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        div {
+            margin-top: 50px;
+            text-align: center;
+        }
+
+        img {
+            width: 100px;
+            margin: 1px;
+            padding: 1px;
+            cursor: pointer;
+        }
+    </style>
+</head>
+
+<body>
+    <div>
+        <button onclick="startCard()">시작</button>
+    </div>
+
+    <div id="table">
+
+
+    </div>
+    <table>
+        <tr>
+            <td></td>
+        </tr>
+    </table>
+    <script>
+        
+        function reverse(obj) {
+            const openImgs = document.querySelectorAll('img[data-open="1"]');
+            arr = []
+            const num = obj.getAttribute('data-num');
+            const imgPath = '/img/cards/' + num + '.png';
+            obj.src = imgPath;
+            obj.setAttribute('data-open', '1');
+            const omg = document.querySelectorAll('img[data-open="1"]');
+            for (let i = 0; i < omg.length; i++) {
+                arr.push(parseInt(omg[i].getAttribute('data-num')) % 13) ;
+            }
+            console.log(arr[0]);
+            console.log(arr[1]);
+            if (arr[0] == arr[1]) {
+                for (let i = 0; i < omg.length; i++) {
+                    omg[i].setAttribute('data-open', '3');
+                }
+            }
+            if (omg.length === 2) {
+                
+                setTimeout(function () {
+                    const opened = document.querySelectorAll('img[data-open="1"]');
+                    console.log(opened);
+                    for (let i = 0; i < opened.length; i++) {
+                        opened[i].src = '/img/cards/back.png';
+                        opened[i].setAttribute('data-open', '0');
+                    }
+
+                }, 1000);
+                return;
+            }
+            if(omg.length ===3){
+                alert('뒤집지마');
+                return
+            }
+        }
+        function startCard() {
+            let table = document.querySelector('#table');
+            let html = '<table border="1">';
+            let cnt = 0;
+            let array = [];
+            for (let i = 0; i < 52; i++) {
+                let rNum = Math.floor(Math.random() * 52); //0~51
+                if (array.includes(rNum)) {
+                    i--;
+                    continue;
+                } else {
+                    array.push(rNum);
+                }
+            }
+            for (let i = 0; i < 52; i++) {
+                if (i % 13 == 0) {
+                    html += '<tr>';
+                }
+
+                html += `<td> <img src="/img/cards/back.png" data-num="${array[cnt++]}" onclick="reverse(this)" data-open="0"></td>`;
+
+                if (i % 13 == 12) {
+                    html += '</tr>';
+                }
+
+            }
+            html += '</table>'
+            table.innerHTML = html;
+        }
+        //속성을 새로 만들때는 date-원하는이름 을사용한다
+        //ex) data-num
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        const arr = [];
+        var strike = 0;
+        var ball = 0;
+        function createRandNum() {
+            for (let i = 0; i < 3; i++) {
+                let num = Math.floor(Math.random() * 9) + 1;
+                if (arr.includes(num)) {
+                    i--
+                    continue;
+                } else {
+                    arr.push(num);
+                }
+
+            }
+            console.log(arr);
+        }
+        function checkNum(num1, num2, num3) {
+            const arr2 = [num1, num2, num3];
+            strike = 0;
+            ball = 0;
+            for (let i = 0; i < arr.length; i++) {
+                if (arr[i] == arr2[i]) {
+                    strike++;
+                }
+                for (let j = 0; j < arr2.length; j++) {
+                    if (arr[i] == arr2[j] && i != j) {
+
+                        ball++;
+                    }
+                }
+            }
+            document.querySelector('#print').innerHTML = '<h1> strike : ' + strike + '</h1>';
+            document.querySelector('#print').innerHTML += '<h1> ball : ' + ball + '</h1>';
+
+        }
+        window.onload = function () {
+            const gDiv = document.querySelector('#gDiv');
+            gDiv.style.display = 'none';
+            const sDiv = document.querySelector('#sDiv');
+            document.querySelector('#sBtn').onclick = function () { //시작버튼
+                sDiv.style.display = 'none';
+                gDiv.style.display = 'block';
+                createRandNum();
+            }
+            document.querySelector('#gBtn').onclick = function () { //도전버튼
+                let num1 = parseInt(document.querySelector('#num1').value);
+                let num2 = parseInt(document.querySelector('#num2').value);
+                let num3 = parseInt(document.querySelector('#num3').value);
+                checkNum(num1, num2, num3);
+                if (strike == 3) {
+                    alert('축하합니다');
+
+                }
+            }
+        }
+        const gDiv = document.querySelector('#gDiv');
+        console.log(gDiv);
+    </script>
+    <div id="sDiv">
+        <button id="sBtn">시작</button>
+    </div>
+    <div id="gDiv">
+        <input type="number" min="0" max="9" id="num1">
+        <input type="number" min="0" max="9" id="num2">
+        <input type="number" min="0" max="9" id="num3">
+        <button id="gBtn">도전</button>
+    </div>
+    <div id="print">
+
+    </div>
+</body>
+
+</html>

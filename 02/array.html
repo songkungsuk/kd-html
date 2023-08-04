@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        //자바스크립트 배열선언방법
+        let arr = new Array(); //생성자로 호출
+        const arr2 = []; //속도는 이게 더빠름
+        // arr2.push('1');
+        // arr2.push('2');
+        // arr2.push('3');
+        
+        for(let i=0; i<3; i++){
+            let num = Math.floor(Math.random()*3)+1
+            if(arr2.includes(num)){
+                i--
+                continue;
+            }else{
+                arr2.push(num);
+            }
+
+        }
+        alert(arr2);
+        console.log(arr2.indexOf(2));
+        console.log(arr2.indexOf(3));
+        console.log(arr2.includes(1));
+        console.log(arr2.includes(3));
+
+    </script>
+</body>
+</html>
