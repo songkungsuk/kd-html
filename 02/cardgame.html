@@ -36,35 +36,32 @@
 
 
     </div>
-    <table>
-        <tr>
-            <td></td>
-        </tr>
-    </table>
+
     <script>
         
         function reverse(obj) {
-            const openImgs = document.querySelectorAll('img[data-open="1"]');
             arr = []
             const num = obj.getAttribute('data-num');
             const imgPath = '/img/cards/' + num + '.png';
             obj.src = imgPath;
-            obj.setAttribute('data-open', '1');
-            const omg = document.querySelectorAll('img[data-open="1"]');
+            obj.setAttribute('data-open', '1'); // 열엇던 카드 속성값 1 집어넣음
+
+            const omg = document.querySelectorAll('img[data-open="1"]'); // 그러고나서 속성값 뽑음 속성값음 객체라 배열형태로도 뽑힐수도있음
+
             for (let i = 0; i < omg.length; i++) {
-                arr.push(parseInt(omg[i].getAttribute('data-num')) % 13) ;
+                arr.push(parseInt(omg[i].getAttribute('data-num')) % 13) ; //속성값을뽑은것의 data-num 의 값을 뽑고 13으로 나눔
             }
-            console.log(arr[0]);
-            console.log(arr[1]);
-            if (arr[0] == arr[1]) {
-                for (let i = 0; i < omg.length; i++) {
+
+            if (arr[0] == arr[1]) { //뽑은카드끼리 비교해서 같은숫자면 속성값을 이상한것을 집어넣음 그러면 밑에서 
+                for (let i = 0; i < omg.length; i++) { //document.querySelectorAll('img[data-open="1"]'); 로 뽑히지가않음
                     omg[i].setAttribute('data-open', '3');
+                    omg[i].setAttribute('onclick', ''); //이미 오픈되있는카드는 더클릭못하게함  
                 }
             }
             if (omg.length === 2) {
                 
                 setTimeout(function () {
-                    const opened = document.querySelectorAll('img[data-open="1"]');
+                    const opened = document.querySelectorAll('img[data-open="1"]'); //그후 뽑힌 카드의개수가 2개면 속성값을 검사 그리고 다시 뒤집음 속성값도 0으로함
                     console.log(opened);
                     for (let i = 0; i < opened.length; i++) {
                         opened[i].src = '/img/cards/back.png';
@@ -74,17 +71,17 @@
                 }, 1000);
                 return;
             }
-            if(omg.length ===3){
-                alert('뒤집지마');
-                return
+            if(omg.length ===3){ //빠르게 2개초과해서 눌럿을때 방지
+                alert('그만 뒤집어');
+                return;
             }
         }
-        function startCard() {
+        function startCard() { //카드 랜덤으로 집어넣음 
             let table = document.querySelector('#table');
             let html = '<table border="1">';
             let cnt = 0;
             let array = [];
-            for (let i = 0; i < 52; i++) {
+            for (let i = 0; i < 52; i++) { //배열에 난수 0~51까지 집어넣음
                 let rNum = Math.floor(Math.random() * 52); //0~51
                 if (array.includes(rNum)) {
                     i--;
@@ -93,12 +90,12 @@
                     array.push(rNum);
                 }
             }
-            for (let i = 0; i < 52; i++) {
+            for (let i = 0; i < 52; i++) { //그리고 난수를 속성값으로 집어넣고 이미지는 뒤집은상태로함
                 if (i % 13 == 0) {
                     html += '<tr>';
                 }
 
-                html += `<td> <img src="/img/cards/back.png" data-num="${array[cnt++]}" onclick="reverse(this)" data-open="0"></td>`;
+                html += `<td><img src="/img/cards/back.png" data-num="${array[cnt++]}" onclick="reverse(this)" data-open="0"></td>`;
 
                 if (i % 13 == 12) {
                     html += '</tr>';
