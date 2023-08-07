@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <div id="result"></div>
+    <script>
+    
+        
+        function countCnt(cnt) {
+            const xhr = new XMLHttpRequest();
+            xhr.open('GET', 'http://localhost:8080/count?cnt=' + cnt);
+            xhr.onreadystatechange = function () {
+                if (xhr.readyState == 4) {
+                    if (xhr.status == 200) {
+                        document.querySelector('#result').innerHTML += xhr.responseText + '<br>';
+                    }
+                }
+            }
+            xhr.send();
+        }
+        countCnt(3);
+        countCnt(2);
+
+        countCnt(1);
+    </script>
+</body>
+
+</html>

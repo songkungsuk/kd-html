@@ -1,30 +1,50 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
 </head>
+
 <body>
-    <div>
-        이름 : <span id="name"></span><br>
-        나이 : <span id="age"></span><br>
-    </div>
-    
+    <button onclick="getInfo()">get Info</button>
+    <table border="1">
+        <tr>
+            <th>번호</th>
+            <th>제목</th>
+            <th>작성일</th>
+        </tr>
+        <tbody id="tBody"></tbody>
+    </table>
     <script>
-        const xhr = new XMLHttpRequest(); //전화기 
-        xhr.open('GET','http://localhost:8080/json'); //여기에 전화를 get방식으로 걸겠다는뜻
-        xhr.onreadystatechange = function(){ //
-            if(xhr.readyState ===4){ //전화받으면 1 / 요청하면 2 //응답하면 3 //받으면 4
-                if(xhr.status ===200){ //정상적이면 200
-                    console.log(xhr.responseText); //서버가 불러준내용
-                    const obj = JSON.parse(xhr.responseText);
-                    document.querySelector('#name').innerHTML = obj.name;
-                    document.querySelector('#age').innerHTML = obj.age;
+        function getInfo() {
+            const xhr = new XMLHttpRequest(); //전화기 
+            xhr.open('GET', 'http://localhost:8080/json'); //여기에 전화를 get방식으로 걸겠다는뜻
+            xhr.onreadystatechange = function () { //
+                if (xhr.readyState === 4) { //전화받으면 1 / 요청하면 2 //응답하면 3 //받으면 4
+                    if (xhr.status === 200) { //정상적이면 200
+                        console.log(xhr.responseText); //서버가 불러준내용
+                        const obj = JSON.parse(xhr.responseText);
+                        console.log(obj);
+                        let html='';
+                        for(let i=0; i<obj.length; i++){
+                            const board = obj[i];
+                            html += '<tr>';
+                            html += `<td>${board.biNum}</td>`;
+                            html += `<td>${board.biTitle}</td>`;
+                            html += `<td>${board.credat}</td>`;
+                            html += '</tr>';
+                        }
+                        document.querySelector('#tBody').innerHTML = html;
+                    }
                 }
             }
+            xhr.send();
+            
         }
-        xhr.send();
+
     </script>
 </body>
+
 </html>
