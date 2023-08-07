@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        var v = 1; //대입될때 결정된다 데이터 타입이 대입한대로 됨
+        let i = 1;
+        const c = 'a';
+        /*
+        string 
+        number
+        boolean
+        null'
+        undifined
+        function
+        object
+        */
+       let a = 0;
+       if(!0){
+        console.log('!0 true');
+       }
+       if(!''){
+        console.log('!"" true');
+       }
+       if(!null){
+        console.log('!null true');
+       }
+       if(!undefined){
+        console.log('!undefined true');
+       }
+       if(!false){
+        console.log('!false true');
+       }
+       const arr = [10,20,30,40,50,60];
+
+       for(let key in arr){
+        console.log(key);
+        console.log(arr[key]);
+       }
+
+       for(let a of arr){
+        console.log(a);
+       }
+    </script>
+</body>
+</html>

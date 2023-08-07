@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+
+    </style>
+</head>
+
+<body>
+    <script>
+        window.onload = function () {
+            let div = document.querySelector('div');
+            console.log(div.style.marginLeft);
+            let marginLeft = parseInt(div.style.marginLeft);
+            console.log(marginLeft);
+            const timer = setInterval(function () {
+                div.style.marginLeft = marginLeft-- + 'px';
+                if (marginLeft == 0) {
+                    clearInterval(timer);
+                    div.style.marginLeft = 1850 + 'px';
+                }
+            }, 1)
+
+        }
+
+    </script>
+    <div style="margin-left: 1850px;">
+        안녕하세요. 애니메이션이 어떻게 되는지 한번 알아 볼게요~~ <br>
+        지금부터는 @keyframes를 이용한 css 애니메이션 기능입니다~
+    </div>
+</body>
+
+</html>

@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        let arr = [];
+        let arr2 = new Array();
+        let map1 = {};
+        map1.name = '안녕';
+        map1.age = 45;
+        console.log(map1);
+        let map2 = new Map();
+        map2.set('name', '안녕');
+        map2.set('age', 45);
+        console.log(map2);
+
+        for(let key in map1){
+            console.log(map1[key]);
+        }
+        
+        for(let [key,value] of map2){
+            console.log(key);
+            console.log(value);
+        }
+    </script>
+</body>
+</html>
